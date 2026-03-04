@@ -18,7 +18,7 @@ state_list = data.state.to_list()
 guessed_states = []
 
 while len(guessed_states) < len(state_list):
-    ans = screen.textinput("US State Game","Enter a state",  ).title()
+    ans = screen.textinput(f"{len(guessed_states)}/{len(state_list)} States Correct","Enter a state",  ).title()
     if ans in guessed_states:
         pass
 
