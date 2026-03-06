@@ -16,20 +16,15 @@ turtle.shape(img)
 data = pandas.read_csv("50_states.csv")
 state_list = data.state.to_list()
 guessed_states = []
-unguessed_states = []
 
 while len(guessed_states) < len(state_list):
     ans = screen.textinput(f"{len(guessed_states)}/{len(state_list)} States Correct","Enter a state",  ).title()
     if ans in guessed_states:
         pass
-
     if ans == "Exit":
-        for i in state_list:
-            if i not in guessed_states:
-                unguessed_states.append(i)
+        unguessed_states = [n for n in state_list if n not in guessed_states]
         pandas.DataFrame(unguessed_states).to_csv("unguessed_states.csv")
         break
-
     elif ans in state_list:
         guessed_states.append(ans)
         t = Turtle()
@@ -39,7 +34,3 @@ while len(guessed_states) < len(state_list):
         t.goto(state_data.x.item(),state_data.y.item())
         t.write(ans)
 
-
-
-
-turtle.mainloop()
